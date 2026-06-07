@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons.svg'],
+      includeAssets: ['icon-512x512.png'],
       manifest: {
         name: 'PatentFlow',
         short_name: 'PatentFlow',
@@ -19,9 +19,9 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: 'icons.svg',
-            sizes: 'any',
-            type: 'image/svg+xml'
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           }
         ]
       }
