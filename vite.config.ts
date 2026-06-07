@@ -17,11 +17,21 @@ export default defineConfig({
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
+        start_url: '/',
+        orientation: 'portrait-primary',
+        categories: ['productivity', 'utilities', 'business'],
         icons: [
           {
             src: 'icon-512x512.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }
