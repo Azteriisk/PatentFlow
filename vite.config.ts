@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon-512x512.png'],
+      includeAssets: ['icon-512x512.png', 'icon-192x192.png'],
       manifest: {
         name: 'PatentFlow',
         short_name: 'PatentFlow',
@@ -22,7 +22,7 @@ export default defineConfig({
         categories: ['productivity', 'utilities', 'business'],
         icons: [
           {
-            src: 'icon-512x512.png',
+            src: 'icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any maskable'
