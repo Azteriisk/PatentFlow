@@ -8,6 +8,7 @@ interface SettingsViewProps {
   onToggleTheme: () => void;
   onClearHistory: () => void;
   onRefreshStats: () => void;
+  onApiConfigChanged: () => void;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
@@ -15,6 +16,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onToggleTheme,
   onClearHistory,
   onRefreshStats,
+  onApiConfigChanged,
 }) => {
   const [apiEndpoint, setApiEndpoint] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -87,6 +89,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     db.setApiKey(apiKey);
     setSaveStatus("Saved API settings successfully!");
     onRefreshStats();
+    onApiConfigChanged();
     setTimeout(() => setSaveStatus(""), 2500);
   };
 
@@ -95,6 +98,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     db.setTsdrApiKey(tsdrApiKey);
     setTsdrSaveStatus("Saved Trademark TSDR API key successfully!");
     onRefreshStats();
+    onApiConfigChanged();
     setTimeout(() => setTsdrSaveStatus(""), 2500);
   };
 
@@ -104,6 +108,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     setApiEndpoint(defaultEndpoint);
     setSaveStatus("Reset to USPTO default endpoint");
     onRefreshStats();
+    onApiConfigChanged();
     setTimeout(() => setSaveStatus(""), 2500);
   };
 

@@ -664,6 +664,7 @@ function App() {
           onToggleTheme={handleThemeToggle}
           onClearHistory={handleClearHistory}
           onRefreshStats={refreshStorageStats}
+          onApiConfigChanged={() => performSearch(query, category, true, sortBy, statusFilter)}
         />
       )}
 
