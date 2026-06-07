@@ -316,9 +316,9 @@ export const db = {
 
   getApiKey: (): string => {
     try {
-      return localStorage.getItem(STORAGE_KEYS.API_KEY) || "";
+      return localStorage.getItem(STORAGE_KEYS.API_KEY) || import.meta.env.VITE_USPTO_API_KEY || "";
     } catch {
-      return "";
+      return import.meta.env.VITE_USPTO_API_KEY || "";
     }
   },
 
@@ -332,9 +332,9 @@ export const db = {
 
   getTsdrApiKey: (): string => {
     try {
-      return localStorage.getItem(STORAGE_KEYS.TSDR_API_KEY) || "";
+      return localStorage.getItem(STORAGE_KEYS.TSDR_API_KEY) || import.meta.env.VITE_TSDR_API_KEY || "";
     } catch {
-      return "";
+      return import.meta.env.VITE_TSDR_API_KEY || "";
     }
   },
 
