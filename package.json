@@ -31,9 +31,9 @@
       ]
     },
     "appx": {
-      "identityName": "PatentFlow",
-      "publisher": "CN=REPLACE-WITH-PUBLISHER-ID",
-      "publisherDisplayName": "Azterisk Digital"
+      "identityName": "44614AzteriskMedia.PatentFlow",
+      "publisher": "CN=8E865F09-40FA-441C-9588-57B4ECC5B157",
+      "publisherDisplayName": "Azterisk Media"
     }
   },
   "dependencies": {
