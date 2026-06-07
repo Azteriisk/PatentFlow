@@ -18,6 +18,10 @@ export default defineConfig({
         background_color: '#0f172a',
         display: 'standalone',
         start_url: '/',
+        id: '/',
+        prefer_related_applications: false,
+        related_applications: [],
+        iarc_rating_id: 'e5841cb6-af4f-5172-98ea-757efa4da622',
         orientation: 'portrait-primary',
         categories: ['productivity', 'utilities', 'business'],
         icons: [
@@ -32,6 +36,26 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
+          }
+        ],
+        screenshots: [
+          {
+            src: 'screenshot-1.png',
+            sizes: '545x960',
+            type: 'image/png',
+            form_factor: 'narrow'
+          },
+          {
+            src: 'screenshot-2.png',
+            sizes: '519x967',
+            type: 'image/png',
+            form_factor: 'narrow'
+          },
+          {
+            src: 'screenshot-3.png',
+            sizes: '513x954',
+            type: 'image/png',
+            form_factor: 'narrow'
           }
         ]
       }

@@ -2,18 +2,9 @@
 
 PatentFlow is a premium, privacy-respecting cross-platform patent and trademark discovery application. Built with a dark, immersive glassmorphic design and tailorable HSL aesthetics, it enables inventors, business creators, trademark attorneys, and researchers to scan and query the official USPTO patent and trademark databases directly from their browser, desktop, or mobile device without any telemetry or third-party tracking.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    PATENTFLOW LENS                      │
-├─────────────────────────────────────────────────────────┤
-│ [Search Keywords or Serial...]            [Status Filter] │
-│ 🔲 AI & Software   🛰️ Space & Aerospace  ⚡ Green Energy │
-├─────────────────────────────────────────────────────────┤
-│ ⬤ Scanning USPTO... (Rate-limited, direct connection)  │
-│ 🛡️ TSDR Lens Active: Live Registry Sync Enabled        │
-└─────────────────────────────────────────────────────────┘
-```
-
+<div align="center">
+  <img src="public/screenshot-1.png" alt="PatentFlow Dashboard" width="450"/>
+</div>
 ---
 
 ## Key Features 🚀
