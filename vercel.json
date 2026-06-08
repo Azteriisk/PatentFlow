@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/uspto-api/:path*",
+      "destination": "https://api.uspto.gov/:path*"
+    },
+    {
+      "source": "/tsdr-api/:path*",
+      "destination": "https://tsdrapi.uspto.gov/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

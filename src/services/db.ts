@@ -42,6 +42,7 @@ export function getPatentStatusLabel(status: string): "Patented" | "Abandoned" |
   return "Pending";
 }
 
+
 export interface SearchHistoryEntry {
   id: string;
   query: string;
@@ -84,6 +85,12 @@ const DEFAULT_CATEGORIES: PatentCategory[] = [
 ];
 
 export const db = {
+  shouldBypassCors(): boolean {
+    const isNative = (window as any).Capacitor || navigator.userAgent?.toLowerCase().includes("electron");
+    if (isNative) return false;
+    return window.location.protocol.startsWith("http");
+  },
+
   // --- BOOKMARKS ---
   getBookmarks(): PatentDocument[] {
     try {

@@ -318,9 +318,8 @@ export const usptoApi = {
     let endpoint = db.getApiEndpoint();
     const isOdp = endpoint.includes("api.uspto.gov");
 
-    // Rewrite endpoint to bypass CORS when running in a local web browser dev server
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    if (isLocalhost && endpoint.startsWith("https://api.uspto.gov")) {
+    // Rewrite endpoint to bypass CORS when running in a web browser
+    if (db.shouldBypassCors() && endpoint.startsWith("https://api.uspto.gov")) {
       endpoint = endpoint.replace("https://api.uspto.gov", "/uspto-api");
     }
 
@@ -472,9 +471,8 @@ export const usptoApi = {
     let endpoint = db.getApiEndpoint();
     const isOdp = endpoint.includes("api.uspto.gov");
 
-    // Rewrite endpoint to bypass CORS when running in a local web browser dev server
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    if (isLocalhost && endpoint.startsWith("https://api.uspto.gov")) {
+    // Rewrite endpoint to bypass CORS when running in a web browser
+    if (db.shouldBypassCors() && endpoint.startsWith("https://api.uspto.gov")) {
       endpoint = endpoint.replace("https://api.uspto.gov", "/uspto-api");
     }
 
@@ -552,9 +550,8 @@ export const usptoApi = {
     const isOdp = endpoint.includes("api.uspto.gov");
     if (!isOdp) return [];
 
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     let url = `https://api.uspto.gov/api/v1/patent/applications/${applId}/documents`;
-    if (isLocalhost) {
+    if (db.shouldBypassCors()) {
       url = url.replace("https://api.uspto.gov", "/uspto-api");
     }
 
@@ -577,7 +574,7 @@ export const usptoApi = {
       return docs.map((d: any) => {
         const download = d.downloadOptionBag?.[0] || {};
         let downloadUrl = download.downloadUrl || "";
-        if (isLocalhost && downloadUrl.startsWith("https://api.uspto.gov")) {
+        if (db.shouldBypassCors() && downloadUrl.startsWith("https://api.uspto.gov")) {
           downloadUrl = downloadUrl.replace("https://api.uspto.gov", "/uspto-api");
         }
         return {
@@ -596,15 +593,13 @@ export const usptoApi = {
    * Fetch trademark case status from TSDR API
    */
   async getTrademarkStatus(caseId: string): Promise<TrademarkDocument> {
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    
     // Clean caseId to digits only if it starts with sn or rn
     const cleanId = caseId.toLowerCase().replace(/^(sn|rn)/, "");
     const prefix = caseId.toLowerCase().startsWith("rn") ? "rn" : "sn";
     const lookupId = `${prefix}${cleanId}`;
     
     let url = `https://tsdrapi.uspto.gov/ts/cd/casestatus/${lookupId}/info.json`;
-    if (isLocalhost) {
+    if (db.shouldBypassCors()) {
       url = url.replace("https://tsdrapi.uspto.gov", "/tsdr-api");
     }
 

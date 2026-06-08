@@ -455,9 +455,8 @@ export const TrademarkSearch: React.FC<TrademarkSearchProps> = ({
 
     const cleanSn = trademark.serialNumber.replace(/\D/g, "");
     const url = `https://tsdrapi.uspto.gov/ts/cd/rawImage/${cleanSn}`;
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     let fetchUrl = url;
-    if (isLocalhost) {
+    if (db.shouldBypassCors()) {
       fetchUrl = fetchUrl.replace("https://tsdrapi.uspto.gov", "/tsdr-api");
     }
 
@@ -515,8 +514,7 @@ export const TrademarkSearch: React.FC<TrademarkSearchProps> = ({
       ? `https://tsdrapi.uspto.gov/ts/cd/casestatus/${lookupId}/download.pdf`
       : `https://tsdrapi.uspto.gov/ts/cd/casestatus/${lookupId}/content.zip`;
 
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    if (isLocalhost) {
+    if (db.shouldBypassCors()) {
       url = url.replace("https://tsdrapi.uspto.gov", "/tsdr-api");
     }
 
