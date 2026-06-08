@@ -5,6 +5,21 @@ import { usptoApi } from "../services/usptoApi";
 import { X, Bookmark, Share2, Calendar, Hash, Award, Layers, FileText } from "lucide-react";
 import { downloadPatentPdf } from "./PdfGenerator";
 
+const getDownloadFetchUrl = (url: string): string => {
+  const isProductionWeb = window.location.protocol.startsWith("http") && 
+                          window.location.hostname !== "localhost" && 
+                          window.location.hostname !== "127.0.0.1" &&
+                          !((window as any).Capacitor || navigator.userAgent?.toLowerCase().includes("electron"));
+  if (isProductionWeb) {
+    let absoluteUrl = url;
+    if (absoluteUrl.startsWith("/uspto-api")) {
+      absoluteUrl = absoluteUrl.replace("/uspto-api", "https://api.uspto.gov");
+    }
+    return `/api/download?url=${encodeURIComponent(absoluteUrl)}`;
+  }
+  return url;
+};
+
 interface PatentDetailProps {
   patent: PatentDocument | null;
   isOpen: boolean;
@@ -113,7 +128,7 @@ export const PatentDetail: React.FC<PatentDetailProps> = ({
         setCachedUrls(prev => prev.filter(url => url !== docUrl));
       } else {
         const apiKey = db.getApiKey();
-        const response = await fetch(docUrl, {
+        const response = await fetch(getDownloadFetchUrl(docUrl), {
           headers: {
             "X-API-KEY": apiKey
           }
@@ -148,7 +163,7 @@ export const PatentDetail: React.FC<PatentDetailProps> = ({
       const fetchPromises = urlsToCache.map(async (url) => {
         try {
           const apiKey = db.getApiKey();
-          const response = await fetch(url, {
+          const response = await fetch(getDownloadFetchUrl(url), {
             headers: {
               "X-API-KEY": apiKey
             }
@@ -251,7 +266,7 @@ export const PatentDetail: React.FC<PatentDetailProps> = ({
     }
     
     try {
-      const response = await fetch(docUrl, {
+      const response = await fetch(getDownloadFetchUrl(docUrl), {
         headers: {
           "X-API-KEY": apiKey
         }
